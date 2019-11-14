@@ -28,7 +28,7 @@ public class PlayerHandScript : MonoBehaviour
         foreach (var card in Cards)
             card.SetCardId( -1 );
         foreach (Transform child in Discards.transform)
-            DestroyObject( child );
+            Object.Destroy( child );
     }
 
     public void FinishGame()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Morpheus;
 
 /// <summary>
 /// Model a deck of cards. Optimize drawing random cards from a deck even when
@@ -32,7 +33,7 @@ public class DeckOfCards
         lock (m_deck)
             while (true)
             {
-                var id = SbRng.NextScaled( m_size );
+                var id = Rng.Default.Next( m_size );
                 if (!m_deck[id]) // not set yet
                 {
                     m_deck[id] = true;
