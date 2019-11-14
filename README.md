@@ -1,2 +1,2 @@
 # DrawPokerIsh
-A DrawPoker-ish prototype
+A DrawPoker-ish prototype to demonstrate delayed-outcome wagering games
