@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class uGUITools : MonoBehaviour
 {
-    [MenuItem( "Tools/uGUI/Anchors to Corners %[" )]
+	[ExecuteInEditMode]
+    [MenuItem( "uGUI/Anchors to Corners %[" )]
     static void AnchorsToCorners()
     {
         RectTransform t = Selection.activeTransform as RectTransform;
@@ -22,7 +23,7 @@ public class uGUITools : MonoBehaviour
         t.offsetMin = t.offsetMax = new Vector2( 0, 0 );
     }
 
-    [MenuItem( "Tools/uGUI/Corners to Anchors %]" )]
+    [MenuItem( "uGUI/Corners to Anchors %]" )]
     static void CornersToAnchors()
     {
         RectTransform t = Selection.activeTransform as RectTransform;
