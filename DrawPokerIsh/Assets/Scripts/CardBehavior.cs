@@ -13,11 +13,6 @@ public class CardBehavior : MonoBehaviour, IPointerClickHandler
     public int Index;
 
     /// <summary>
-    /// Where to get the images from, along with "deck" functionality
-    /// </summary>
-    public DeckOfCardsController DeckOfCards;
-
-    /// <summary>
     /// The image to set when the cards change
     /// </summary>
     private Image m_cardImage;
@@ -30,7 +25,7 @@ public class CardBehavior : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick( PointerEventData eventData )
     {
-        Debug.Log( "Clicked" );
+        Debug.Log( $"Clicked Card[{Index}]" );
         Dispatcher.Default.Post( new DrawCardRequest( Index ) );
     }
 
@@ -38,9 +33,12 @@ public class CardBehavior : MonoBehaviour, IPointerClickHandler
     [AEventHandler]
     public void OnNewPokerHand( NewPokerHandDealtMessage hand )
     {
-        Debug.Log( "Received PokerHand" );
-        var sprite = new CardSpriteRequest( Index );
-        Dispatcher.Default.Post( sprite );
-        m_cardImage.sprite = sprite.Sprite;
+        var spriteRequest = new CardSpriteRequest( Index );
+        Dispatcher.Default.Post( spriteRequest );
+        if (m_cardImage.sprite != spriteRequest.Sprite)
+        {
+            m_cardImage.sprite = spriteRequest.Sprite;
+            Debug.Log( $"New Card at Index {Index}" );
+        }
     }
 }
