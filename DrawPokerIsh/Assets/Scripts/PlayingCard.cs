@@ -1,7 +1,4 @@
-﻿/// <summary>
-/// Extends the PlayingCard class to add helpful access methods.
-/// </summary>
-public partial class PlayingCard
+﻿public class PlayingCard
 {
     public int CardId { get; set; }
 

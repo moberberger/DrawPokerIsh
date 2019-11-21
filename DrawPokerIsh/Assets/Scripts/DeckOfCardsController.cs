@@ -10,7 +10,7 @@ using DG.Tweening.Core;
 using Morpheus;
 using System.Collections;
 
-public class DeckOfCardsScript : MonoBehaviour
+public class DeckOfCardsController : MonoBehaviour
 {
     public Sprite[] CardsInDeckInOrder;
 
@@ -44,6 +44,13 @@ public class DeckOfCardsScript : MonoBehaviour
             Cards = m_hand
         };
         Dispatcher.Default.Post( hand );
+    }
+
+    [AEventHandler]
+    public void ProvideSprite( CardSpriteRequest _req )
+    {
+        var cardId = m_hand[_req.Index].CardId;
+        _req.Sprite = CardsInDeckInOrder[cardId];
     }
 }
 

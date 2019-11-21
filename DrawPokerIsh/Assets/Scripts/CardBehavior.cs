@@ -15,7 +15,7 @@ public class CardBehavior : MonoBehaviour, IPointerClickHandler
     /// <summary>
     /// Where to get the images from, along with "deck" functionality
     /// </summary>
-    public DeckOfCardsScript DeckOfCards;
+    public DeckOfCardsController DeckOfCards;
 
     /// <summary>
     /// The image to set when the cards change
@@ -28,17 +28,19 @@ public class CardBehavior : MonoBehaviour, IPointerClickHandler
         m_cardImage = GetComponent<Image>();
     }
 
+    public void OnPointerClick( PointerEventData eventData )
+    {
+        Debug.Log( "Clicked" );
+        Dispatcher.Default.Post( new DrawCardRequest( Index ) );
+    }
+
 
     [AEventHandler]
     public void OnNewPokerHand( NewPokerHandDealtMessage hand )
     {
         Debug.Log( "Received PokerHand" );
-        m_cardImage.sprite = DeckOfCards.CardsInDeckInOrder[hand.Cards[Index].CardId];
-    }
-
-    public void OnPointerClick( PointerEventData eventData )
-    {
-        Debug.Log( "Clicked" );
-        Dispatcher.Default.Post( new DrawCardRequest( Index ) );
+        var sprite = new CardSpriteRequest( Index );
+        Dispatcher.Default.Post( sprite );
+        m_cardImage.sprite = sprite.Sprite;
     }
 }
