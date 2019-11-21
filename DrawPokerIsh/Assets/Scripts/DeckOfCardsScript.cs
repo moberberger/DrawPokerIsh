@@ -16,21 +16,34 @@ public class DeckOfCardsScript : MonoBehaviour
 
     private DeckOfCards m_deck = new DeckOfCards( 52 );
 
-    public int GetNextRandomCard() => m_deck.GetRandomCard().CardId;
-    public void Shuffle() => m_deck.Shuffle();
+    private PlayingCard[] m_hand = new PlayingCard[5];
 
     IEnumerator Start()
     {
         // cards have to have their Images
         yield return new WaitForEndOfFrame();
 
-        var hand = new PokerHand()
+        m_hand = m_deck.GetRandomCards( 5 ).ToArray();
+
+        var hand = new NewPokerHandDealtMessage()
         {
-            Cards = m_deck.GetRandomCards( 5 ).ToArray()
+            Cards = m_hand
         };
         Dispatcher.Default.Post( hand );
 
         yield return null;
+    }
+
+    [AEventHandler]
+    public void OnDrawCardRequest( DrawCardRequest _req )
+    {
+        var card = m_deck.GetRandomCard();
+        m_hand[_req.Index] = card;
+        var hand = new NewPokerHandDealtMessage()
+        {
+            Cards = m_hand
+        };
+        Dispatcher.Default.Post( hand );
     }
 }
 

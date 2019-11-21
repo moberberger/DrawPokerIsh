@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class PokerHand
+public class NewPokerHandDealtMessage
 {
     public PlayingCard[] Cards = new PlayingCard[5];
 }

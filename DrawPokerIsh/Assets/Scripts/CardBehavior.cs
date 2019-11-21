@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using Morpheus;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardBehavior : MonoBehaviour
+public class CardBehavior : MonoBehaviour, IPointerClickHandler
 {
     /// <summary>
     /// The index of this card UI object (0-4 likely)
@@ -22,11 +23,6 @@ public class CardBehavior : MonoBehaviour
     private Image m_cardImage;
 
 
-    void Awake()
-    {
-        new MessageHandlerDiscovery().RegisterInstanceHandlers( this );
-    }
-
     void Start()
     {
         m_cardImage = GetComponent<Image>();
@@ -34,9 +30,15 @@ public class CardBehavior : MonoBehaviour
 
 
     [AEventHandler]
-    public void OnNewPokerHand( PokerHand hand )
+    public void OnNewPokerHand( NewPokerHandDealtMessage hand )
     {
         Debug.Log( "Received PokerHand" );
         m_cardImage.sprite = DeckOfCards.CardsInDeckInOrder[hand.Cards[Index].CardId];
+    }
+
+    public void OnPointerClick( PointerEventData eventData )
+    {
+        Debug.Log( "Clicked" );
+        Dispatcher.Default.Post( new DrawCardRequest( Index ) );
     }
 }
