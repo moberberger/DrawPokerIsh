@@ -288,11 +288,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1407694487}
     m_Modifications:
-    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
-        type: 3}
-      propertyPath: DeckOfCards
-      value: 
-      objectReference: {fileID: 1039460876}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
@@ -403,6 +398,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: DeckOfCards
+      value: 
+      objectReference: {fileID: 1039460876}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: Index
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63e23189cb6e5ca4dbee1b08183f9779, type: 3}
 --- !u!1001 &915625691
@@ -412,11 +417,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1407694487}
     m_Modifications:
-    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
-        type: 3}
-      propertyPath: DeckOfCards
-      value: 
-      objectReference: {fileID: 1039460876}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
@@ -527,6 +527,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: DeckOfCards
+      value: 
+      objectReference: {fileID: 1039460876}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: Index
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63e23189cb6e5ca4dbee1b08183f9779, type: 3}
 --- !u!1 &1039460875
@@ -539,6 +549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1039460877}
   - component: {fileID: 1039460876}
+  - component: {fileID: 1039460878}
   m_Layer: 0
   m_Name: DeckOfCardsController
   m_TagString: Untagged
@@ -625,6 +636,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1039460878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039460875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb33daee13363564e97f04663d3c87e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1108344013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -632,11 +655,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1407694487}
     m_Modifications:
-    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
-        type: 3}
-      propertyPath: DeckOfCards
-      value: 
-      objectReference: {fileID: 1039460876}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
@@ -747,6 +765,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: DeckOfCards
+      value: 
+      objectReference: {fileID: 1039460876}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63e23189cb6e5ca4dbee1b08183f9779, type: 3}
 --- !u!224 &1200636989 stripped
@@ -806,7 +829,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1600, y: 900}
+  m_ReferenceResolution: {x: 900, y: 1600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -865,11 +888,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1407694487}
     m_Modifications:
-    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
-        type: 3}
-      propertyPath: DeckOfCards
-      value: 
-      objectReference: {fileID: 1039460876}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
@@ -980,6 +998,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: DeckOfCards
+      value: 
+      objectReference: {fileID: 1039460876}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: Index
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63e23189cb6e5ca4dbee1b08183f9779, type: 3}
 --- !u!224 &1843980878 stripped
@@ -1001,11 +1029,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1407694487}
     m_Modifications:
-    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
-        type: 3}
-      propertyPath: DeckOfCards
-      value: 
-      objectReference: {fileID: 1039460876}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
@@ -1115,6 +1138,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: DeckOfCards
+      value: 
+      objectReference: {fileID: 1039460876}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: Index
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63e23189cb6e5ca4dbee1b08183f9779, type: 3}

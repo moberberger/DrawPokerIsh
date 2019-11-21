@@ -12,11 +12,6 @@ using System.Collections;
 
 public class DeckOfCardsScript : MonoBehaviour
 {
-    static DeckOfCardsScript()
-    {
-        new MessageHandlerDiscovery( Dispatcher.Default ).RegisterHandlers();
-    }
-
     public Sprite[] CardsInDeckInOrder;
 
     private DeckOfCards m_deck = new DeckOfCards( 52 );

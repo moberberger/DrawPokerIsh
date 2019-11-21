@@ -29,7 +29,6 @@ public class CardBehavior : MonoBehaviour
 
     void Start()
     {
-        Debug.Log( "Settin gImage" );
         m_cardImage = GetComponent<Image>();
     }
 
