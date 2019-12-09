@@ -293,6 +293,11 @@ PrefabInstance:
       propertyPath: DeckOfCards
       value: 
       objectReference: {fileID: 1039460876}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: Index
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
@@ -417,6 +422,11 @@ PrefabInstance:
       propertyPath: DeckOfCards
       value: 
       objectReference: {fileID: 1039460876}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: Index
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
@@ -870,6 +880,11 @@ PrefabInstance:
       propertyPath: DeckOfCards
       value: 
       objectReference: {fileID: 1039460876}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: Index
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
@@ -1006,6 +1021,11 @@ PrefabInstance:
       propertyPath: DeckOfCards
       value: 
       objectReference: {fileID: 1039460876}
+    - target: {fileID: -3730880536127866227, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: Index
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6379872799204705386, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Name
