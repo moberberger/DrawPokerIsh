@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Protobuf.DrawPoker;
 
-public class PaylineClickedMessage
+public class NewPokerHandDealtMessage
 {
-    public Payline Payline { get; set; }
+    public PlayingCard[] Cards = new PlayingCard[5];
 }
-

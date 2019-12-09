@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Morpheus;
-using Protobuf.Cards;
 
 /// <summary>
 /// Model a deck of cards. Optimize drawing random cards from a deck even when
