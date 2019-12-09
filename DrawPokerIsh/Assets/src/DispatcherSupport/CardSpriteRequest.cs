@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class CardSpriteRequest
 {
-    public int Index;
-    public CardSpriteRequest( int _index ) => Index = _index;
+    public int CardId;
+
     public Sprite Sprite { get; set; }
+
+    public CardSpriteRequest( int _cardId ) => CardId = _cardId;
 }
