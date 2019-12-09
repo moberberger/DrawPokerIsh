@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+package synergyBlue.protobuf.drawPoker;
+
+import "timestamp.proto";
+import "Cards.proto";
+
+message GameState
+{
+    // The cards that were dealt at the beginning of the game. Should always be exactly 5 of
+    // them.
+    repeated synergyBlue.protobuf.cards.PlayingCard InitialCards = 1;
+
+    // The cards resulting from the player's choice- Ie the cards that the player HELD plus the
+    // cards which replaced the cards the player DISCARDED. Should always be exactly 5 of them.
+    repeated synergyBlue.protobuf.cards.PlayingCard FinalCards = 2;
+
+    // The timestamp of when the cards were dealt (RNG first used to generate cards)
+    google.protobuf.Timestamp TimeDealt = 3;
+
+    // The time that the cards were generated to replace those cards discarded by the player.
+    google.protobuf.Timestamp TimeDrawn = 4;
+
+    // If set, this represents how the initial cards were evaluated given the paytable.
+    Evaluation InitialEvaluation = 5;
+    
+    // If set, this represents how the final cards were evaluated given the paytable.
+    Evaluation FinalEvaluation = 6;
+    
+    // If the "InitialEvaluation" resulted in a winning payline, this is set to that payline.
+    Payline InitialWinningPayline = 7;
+    
+    // If the "FinalEvaluation" resulted in a winning payline, this is set to that payline.
+    Payline FinalWinningPayline = 8;
+
+    // If TRUE, then all properties of this object should be set AND the game is considered
+    // over.
+    bool IsFinalResult = 9;
+
+    // The index of the wager into the enabled wager amounts.
+    int32 WagerIndex = 10;
+
+    // The amount of the wager, in credits
+    int32 WagerInCredits = 11;
+}
+
+// The results of a poker hand evaluation- This is in terms of extremely basic poker
+// information. Specifically, things like "straight-flush" or "4-Aces" are not detected, as they
+// are completely derivative of the data found here. Full Houses are only identified because
+// they are trivial to detect (a single "else" statement with an assignment to the bool)
+message Evaluation
+{
+    // This represents the number of different Ranks found in a poker hand.
+    int32 DistinctRankCount = 1;
+
+    // This is calculated as the product of the counts of different ranks in a poker hand. It is
+    // used in conjunction with DistinctRankCount to determine exactly which type of "of-a-kind"
+    // hand is present. This relies on observations in prime factorization.
+    int32 DistinctRankCountProduct = 2;
+
+    // The Ranks found in the hand, ordered from 2 through Ace
+    repeated synergyBlue.protobuf.cards.ERank OrderedRanks = 3;
+
+    // The highest rank with a plurality of cards found in the hand
+    synergyBlue.protobuf.cards.ERank HighestDuplicateRank = 4;
+
+    // The cards used to create this evaluation in the same order they were presented to the
+    // evaluator
+    repeated synergyBlue.protobuf.cards.PlayingCard UnorderedCards = 5;
+
+    // The number of wild cards used to make the hand.
+    int32 NumberOfWildCards = 6;
+    
+    // A Four of a Kind
+    bool FourOfAKind = 7;
+
+    // A Three of a Kind but NOT FourOfAKind and NOT FullHouse
+    bool ThreeOfAKind = 8;
+
+    // Two Different Pairs but NOT a FullHouse
+    bool TwoPair = 9;
+
+    // A single Pair, but no TwoPair, ThreeOfAKind, FourOfAKind, or FullHouse
+    bool Pair = 10;
+
+    // A ThreeOfAKind of one Rank and a Pair of another Rank
+    bool FullHouse = 11;
+
+    // All the same suit
+    bool Flush = 12;
+
+    // All cards consecutive OR A-2-3-4-5
+    bool Straight = 13;
+
+    // All ranks equal (need wild cards or multiple decks)
+    bool FiveOfAKind = 14;
+}
+
+// A collection of PayLines to be used when determining how to pay for a hand
+message Paytable
+{
+    // The GameID that this paytable belongs to
+    string GameId = 1;
+
+    // A Unique ID for the specific payout schedule (classically called a "paytable")
+    string PaytableId = 2;
+
+    // An English-description/Name for the Payout schedule (should be exclusive of RTP info)
+    string PaytableName = 3;
+
+    // a version number which gets changed when the underlying logic or rules don't change, but
+    // the source code does.4
+    string Version = 4;
+
+    // The RTP for this payout schedule. Should only be displayed on the attendant menu.
+    string RTP = 5;
+
+    // How many cards are in a deck for this poker variant
+    int32 NumberOfCardsInDeck = 6;
+
+    // The number of cards in a hand. Typically 5 or 7.
+    int32 NumberOfCardsInHand = 7;
+
+    // Describes if the deck/evaluations consider Wild Cards.
+    bool HasWildCards = 8;
+
+    // The PayLines that are assocated with this paytable.
+    repeated Payline Paylines = 9;
+}
+
+// Data about a single opportunity for a hand to pay something.
+message Payline
+{
+    // A unique ID for the payline- Must correspond to an Evaluator static method that has been
+    // decorated with a matching APaylineEvaluatorAttribute. This is case-Insensitive and all
+    // spaces are removed.
+    string Id = 1;
+
+    // A concise English language description.
+    string EnglishDescription = 2;
+
+    // Higher numbers should be displayed farther towards the TOP of the paytable display.
+    int32 DisplaySortIndex = 3;
+
+    // How much is paid for a hand that is identified as matching this payline. If there's only
+    // one entry, then the wager is simply multiplied by that single entry value. If there are
+    // multiple entries, then the index of the wager in the "enabledWagers" list is used to
+    // lookup an entry in this list.
+    repeated int32 WinAmounts = 4;
+}
+
+message DrawPokerRequest
+{
+    // The cards that the player chose to discard. These cards will be replaced with new cards
+    // in the second state of this game.
+    repeated synergyBlue.protobuf.cards.PlayingCard CardsDiscarded = 1;
+}
+
+message PaytableList
+{
+    repeated Paytable Paytables = 1;
+}
+

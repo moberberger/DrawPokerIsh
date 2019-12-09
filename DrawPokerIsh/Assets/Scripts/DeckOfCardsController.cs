@@ -9,6 +9,7 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using Morpheus;
 using System.Collections;
+using Protobuf.Cards;
 
 public class DeckOfCardsController : MonoBehaviour
 {

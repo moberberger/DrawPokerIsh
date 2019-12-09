@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Morpheus;
 using TMPro;
+using Protobuf.DrawPoker;
+using System;
 
 public class PaytableController : MonoBehaviour
 {
@@ -21,16 +23,16 @@ public class PaytableController : MonoBehaviour
     public string[] Paylines;
 
     private Paytable m_paytable = new Paytable();
-    private Dictionary<Payline, TextMeshProUGUI> m_lookup = new Dictionary<Payline, TextMeshProUGUI>();
+    private Dictionary<string, TextMeshProUGUI> m_lookup = new Dictionary<string, TextMeshProUGUI>();
 
     void Start()
     {
         TextTemplate = TextTemplate ?? GetComponentInChildren<TextMeshProUGUI>();
 
         TextTemplate.enabled = false;
-        foreach (var paylineCode in Paylines)
+        foreach (var paylineString in Paylines)
         {
-            var split = paylineCode
+            var split = paylineString
                 .Split( '=' )
                 .Select( _code => _code.RemoveDuplicateWhitespace() )
                 .ToArray();
@@ -42,19 +44,29 @@ public class PaytableController : MonoBehaviour
             uiLine.GetComponent<PaylineClickHandler>().Payline = payline;
             uiLine.enabled = true;
 
-            m_lookup[payline] = uiLine;
+            m_lookup.Add( payline.EnglishDescription, uiLine );
         }
     }
 
     [AEventHandler]
     public void OnPaylineClicked( PaylineClickedMessage _msg )
     {
-        var uiLine = m_lookup[_msg.Payline];
-        SetPaylineText( uiLine, _msg.Payline );
+        try
+        {
+            Debug.Log( $"Payline {_msg.Payline.EnglishDescription} @ {_msg.Payline.WinAmounts[0]} Handled" );
+
+            var uiLine = m_lookup[_msg.Payline.EnglishDescription];
+
+            SetPaylineText( uiLine, _msg.Payline );
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError( ex.ToString() );
+        }
     }
 
     private void SetPaylineText( TextMeshProUGUI _uiLine, Payline _payline )
     {
-        _uiLine.text = $"{_payline.Name}<pos=60%>{_payline.Prize}";
+        _uiLine.text = $"{_payline.EnglishDescription}<pos=60%>{_payline.WinAmounts[0]}";
     }
 }
