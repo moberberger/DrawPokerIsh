@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 0
   WinText: {fileID: 2657812524266698007}
+  MessageText: 
   StartingHand: 
   HeldCardIndicies: 0000000000000000000000000000000000000000
   NextHands:
@@ -337,6 +338,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4086867672758305365, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6379872799204705385, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -486,6 +492,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086867672758305365, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6379872799204705385, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
@@ -638,6 +649,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1830165445244513319, guid: 63e23189cb6e5ca4dbee1b08183f9779,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086867672758305365, guid: 63e23189cb6e5ca4dbee1b08183f9779,
         type: 3}
       propertyPath: m_Enabled
       value: 1

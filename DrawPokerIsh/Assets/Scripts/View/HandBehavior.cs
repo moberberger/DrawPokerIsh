@@ -14,6 +14,9 @@ public class HandBehavior : MonoBehaviour, IPointerClickHandler
 
     public TextMeshProUGUI WinText;
 
+    public string MessageText;
+
+
     /// <summary>
     /// 2-char comma separated list of cards to initially populate these slots
     /// </summary>
@@ -57,6 +60,8 @@ public class HandBehavior : MonoBehaviour, IPointerClickHandler
         }
 
         Dispatcher.Default.Post( new SetHeldCards( HeldCardIndicies ) );
+
+        Dispatcher.Default.Post( MessageText );
     }
 
     [AEventHandler]

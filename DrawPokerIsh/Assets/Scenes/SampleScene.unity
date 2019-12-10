@@ -350,42 +350,42 @@ PrefabInstance:
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: StartingHand
-      value: ad, ad, ad, ad, ad
+      value: jh, qh, kh, 2s, 7s
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[0]
-      value: 4s,5s,6s,7s,kd
+      value: jh, qh, kh, 7h, 2d
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[1]
-      value: ks, kc, as, kh, kd
+      value: jh, qh, kh, 8d, 3s
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[2]
-      value: 4h,5h,6h,7h,kd
+      value: jh, qh, kh, as, 5d
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[3]
-      value: 9d, jd, 0d, qd, kd
+      value: jh, qh, kh, 9h, 0h
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[4]
-      value: 5s, 6s, 8h, 9d, kd
+      value: jh, qh, kh, 8d, 0s
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: HeldCardIndicies.Array.data[0]
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHandWinTexts.Array.data[1]
-      value: Four of a Kind - 25
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
@@ -401,6 +401,22 @@ PrefabInstance:
         type: 3}
       propertyPath: Index
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: HeldCardIndicies.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: HeldCardIndicies.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: MessageText
+      value: This hand is 50, next hand will be initially dealt a flush, yielding
+        5x flushes = 25
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132475, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
@@ -1658,37 +1674,37 @@ PrefabInstance:
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: StartingHand
-      value: ac, ac, ac, ac, ac
+      value: 7s, 7c, 7d, 0s, 2d
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[0]
-      value: 4s,5s,6s,7s,kd
+      value: 7s, 7c, 7d, 6d, 5d
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[1]
-      value: ks, kc, as, kh, kd
+      value: 7s, 7c, 7d, as, 7h
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[2]
-      value: 4h,5h,6h,7h,kd
+      value: 7s, 7c, 7d, 2d, 2h
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[3]
-      value: 9d, jd, 0d, qd, kd
+      value: 7s, 7c, 7d, 7h, 2d
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[4]
-      value: 5s, 6s, 8h, 9d, kd
+      value: 7s, 7c, 7d, ks, kc
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: HeldCardIndicies.Array.data[0]
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
@@ -1698,17 +1714,42 @@ PrefabInstance:
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHandWinTexts.Array.data[2]
-      value: 
+      value: Full House = 10
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHandWinTexts.Array.data[3]
-      value: Straight Flush - 50
+      value: Four of a Kind - 25
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: Index
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: HeldCardIndicies.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: HeldCardIndicies.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: NextHandWinTexts.Array.data[0]
+      value: Three of a Kind = 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: NextHandWinTexts.Array.data[4]
+      value: Three of a Kind = 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: MessageText
+      value: Current = 66, Next Hands will be a Straight and a Flush
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132475, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
@@ -2417,6 +2458,175 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9195dfcb3459044d855ba89366fe276, type: 3}
+--- !u!1 &1019950082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1019950083}
+  - component: {fileID: 1019950086}
+  - component: {fileID: 1019950085}
+  - component: {fileID: 1019950084}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1019950083
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019950082}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1407694487}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.8120371}
+  m_AnchorMax: {x: 1, y: 1.0000175}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1019950084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019950082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ab0a145721e5b49a5ba1d332dc1d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MessageText: {fileID: 1019950085}
+--- !u!114 &1019950085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019950082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Message Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 144
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 144
+  m_fontStyle: 0
+  m_textAlignment: 514
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1019950085}
+    characterCount: 12
+    spriteCount: 0
+    spaceCount: 1
+    wordCount: 2
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1019950086
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019950082}
+  m_CullTransparentMesh: 0
 --- !u!1 &1039460875
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,6 +2827,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 152784412}
+  - {fileID: 1019950083}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2872,58 +3083,93 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
+      propertyPath: HeldCardIndicies.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
       propertyPath: StartingHand
-      value: as, as, as, as, as
+      value: 7s, 2s, 6s, 9h, ks
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[0]
-      value: as, as, as, as, as
+      value: 7s, 2s, 6s, as, ks
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[1]
-      value: ks, kc, as, kh, kd
+      value: 7s, 2s, 6s, kh, ks
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[2]
-      value: 4h,5h,6h,7h,kd
+      value: 7s, 2s, 6s, 3s, ks
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[3]
-      value: 9d, jd, 0d, qd, kd
+      value: 7s, 2s, 6s, ah, ks
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHands.Array.data[4]
-      value: 5s, 6s, 8h, 9d, kd
+      value: 7s, 2s, 6s, js, ks
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: HeldCardIndicies.Array.data[0]
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: NextHandWinTexts.Array.data[1]
-      value: Four of a Kind - 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
-        type: 3}
-      propertyPath: NextHandWinTexts.Array.data[2]
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
+      propertyPath: NextHandWinTexts.Array.data[2]
+      value: Flush - 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
       propertyPath: NextHandWinTexts.Array.data[3]
-      value: Straight Flush - 50
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: Index
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: HeldCardIndicies.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: HeldCardIndicies.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: HeldCardIndicies.Array.data[3]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: NextHandWinTexts.Array.data[0]
+      value: Flush - 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: NextHandWinTexts.Array.data[4]
+      value: Flush - 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: MessageText
+      value: Current = 15, Next Hands will be Straight Flush and two Flushes
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132475, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
@@ -3941,6 +4187,11 @@ PrefabInstance:
       propertyPath: HeldCardIndicies.Array.data[1]
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: MessageText
+      value: Total Win = 75
+      objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132475, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4936,6 +5187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: NextHandWinTexts.Array.data[3]
       value: Straight Flush - 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226466649420132474, guid: b9195dfcb3459044d855ba89366fe276,
+        type: 3}
+      propertyPath: MessageText
+      value: Total Win = 75
       objectReference: {fileID: 0}
     - target: {fileID: 1226466649420132475, guid: b9195dfcb3459044d855ba89366fe276,
         type: 3}
