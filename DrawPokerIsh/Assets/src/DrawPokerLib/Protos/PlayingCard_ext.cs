@@ -1,4 +1,7 @@
-﻿namespace Protobuf.Cards
+﻿using System;
+
+
+namespace Protobuf.Cards
 {
     /// <summary>
     /// Extends the PlayingCard class to add helpful access methods.
@@ -32,6 +35,23 @@
         /// match order found in <see cref="ERank"/>
         /// </summary>
         public int CardIndex => CardId;
+
+        const string suits = "CDHS";
+        const string ranks = "234567890JQKA";
+
+        public static PlayingCard From2String( string _str )
+        {
+            if (_str?.Length != 2) throw new ArgumentOutOfRangeException( "May only pass in 2-character strings" );
+            _str = _str.ToUpper();
+
+            int rank = ranks.IndexOf( _str[0] );
+            if (rank < 0) throw new ArgumentException( $"Rank is invalid: {_str[0]}" );
+
+            int suit = suits.IndexOf( _str[1] );
+            if (suit < 0) throw new ArgumentException( $"Suit is invalid: {_str[1]}" );
+
+            return new PlayingCard( rank * 4 + suit );
+        }
 
         /// <summary>
         /// Get either a 2-char or a full string description of this card.

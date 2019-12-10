@@ -15,4 +15,5 @@ public class PaylineClickHandler : MonoBehaviour, IPointerClickHandler
         Payline.WinAmounts[0] *= 2;
         Dispatcher.Default.Post( new PaylineClickedMessage() { Payline = Payline } ); 
     }
+
 }

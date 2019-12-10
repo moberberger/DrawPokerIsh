@@ -16,7 +16,7 @@ public class PickOneOfThree : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Start111()
     {
         m_hands = new int[5][];
 
@@ -37,7 +37,7 @@ public class PickOneOfThree : MonoBehaviour
     }
 
 
-    [AEventHandler]
+    //[AEventHandler]
     public void OnHandClicked( HandClicked evt )
     {
         m_siblings[3].SetActive( true );
@@ -53,6 +53,17 @@ public class PickOneOfThree : MonoBehaviour
 
                 Dispatcher.Default.Post( new CardDisplayRequest( card, hand, cardId ), EDispatchMode.Batched );
             }
+        }
+    }
+
+    [AEventHandler]
+    public void OnHandInit( SetInitialHand _hand )
+    {
+        for (int card = 0; card < 5; card++)
+        {
+            int cardId = _hand.Cards[card].CardId;
+
+            Dispatcher.Default.Post( new CardDisplayRequest( card, _hand.Index, cardId ) );
         }
     }
 }
