@@ -24,7 +24,7 @@ public class CardBehavior : MonoBehaviour//, IPointerClickHandler
     /// </summary>
     public Image CardImage;
 
-    public TextMeshProUGUI HeldImage;
+    public Image HeldImage;
 
 
     void Start()
