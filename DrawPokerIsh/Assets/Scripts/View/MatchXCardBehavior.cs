@@ -11,15 +11,18 @@ using TMPro;
 using UnityEngine.EventSystems;
 using Protobuf.Cards;
 
+[ExecuteInEditMode]
 public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
 {
     public int RowIndex;
     public int ColumnIndex;
     public string InitialCard2Char;
 
+
     private CardController m_card;
     private bool m_dirty = true;
 
+    public DeckOfCardsController CardImages;
     public Image CardImage;
     public TextMeshProUGUI MessageObject;
     public Image SelectedImage;
@@ -27,27 +30,31 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        var req = new RequestCardController( RowIndex, ColumnIndex );
-        Dispatcher.PostDefault( req );
-        m_card = req.CardController;
-
-        var card = PlayingCard.From2String( InitialCard2Char );
-        if (card != null)
+        if (Application.isPlaying)
         {
-            m_card.CardId = card.CardId;
-        }
-    }
+            var req = new RequestCardController( RowIndex, ColumnIndex );
+            Dispatcher.PostDefault( req );
+            m_card = req.CardController;
 
-    public void OnPropChanged( object _object, string _propertyName, object _previousValue, object _newValue )
-    {
-        Debug.Log( $"{_propertyName}" );
-        m_dirty = true;
+            var card = PlayingCard.From2String( InitialCard2Char );
+            if (card != null && m_card != null)
+            {
+                m_card.CardId = card.CardId;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (m_dirty)
+        if (m_dirty && !Application.isPlaying)
+        {
+            var cardId = PlayingCard.IdFrom2String( InitialCard2Char );
+            var sprite = CardImages.GetSprite( cardId );
+            CardImage.sprite = sprite;
+            Debug.Log( cardId );
+        }
+        else if (m_dirty)
         {
             var id = m_card.IsUpsideDown ? -1 : (int) m_card.CardId;
             var req = new CardSpriteRequest( id );

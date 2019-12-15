@@ -21,11 +21,15 @@ public class DeckOfCardsController : MonoBehaviour
     public void ProvideSprite( CardSpriteRequest _req )
     {
         var cardId = _req.CardId;
+        _req.Sprite = GetSprite( cardId );
+    }
 
+    public Sprite GetSprite( int cardId )
+    {
         if (cardId < 0 || cardId > 51)
-            _req.Sprite = MissingCardSprite;
+            return MissingCardSprite;
         else
-            _req.Sprite = CardsInDeckInOrder[cardId];
+            return CardsInDeckInOrder[cardId];
     }
 }
 

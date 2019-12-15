@@ -53,6 +53,20 @@ namespace Protobuf.Cards
             return new PlayingCard( rank * 4 + suit );
         }
 
+        public static int IdFrom2String( string _str )
+        {
+            if (_str?.Length != 2) return -1;
+            _str = _str.ToUpper();
+
+            int rank = ranks.IndexOf( _str[0] );
+            if (rank < 0) return -1;
+
+            int suit = suits.IndexOf( _str[1] );
+            if (suit < 0) return -1;
+
+            return rank * 4 + suit;
+        }
+
         /// <summary>
         /// Get either a 2-char or a full string description of this card.
         /// </summary>
