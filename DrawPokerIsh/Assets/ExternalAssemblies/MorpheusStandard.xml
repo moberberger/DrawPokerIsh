@@ -3643,6 +3643,13 @@
             when this method was called.
             </returns>
         </member>
+        <member name="M:Morpheus.Dispatcher.PostDefault(System.Object,Morpheus.EDispatchMode)">
+            <summary>
+            Helper to use the Default dispatcher
+            </summary>
+            <param name="_event"></param>
+            <param name="_dispatchMode"></param>
+        </member>
         <member name="T:Morpheus.DispatcherException">
             <summary>
             An exception was thrown by an event handler. Post that exception as an
