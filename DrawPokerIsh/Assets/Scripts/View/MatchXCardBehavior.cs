@@ -14,13 +14,15 @@ using Protobuf.Cards;
 [ExecuteInEditMode]
 public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
 {
+    private CardController m_card;
+    private bool m_dirty = true;
+
+
     public int RowIndex;
     public int ColumnIndex;
     public string InitialCard2Char;
+    public int AvailableStage = 0;
 
-
-    private CardController m_card;
-    private bool m_dirty = true;
 
     public DeckOfCardsController CardImages;
     public Image CardImage;
@@ -52,7 +54,6 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
             var cardId = PlayingCard.IdFrom2String( InitialCard2Char );
             var sprite = CardImages.GetSprite( cardId );
             CardImage.sprite = sprite;
-            Debug.Log( cardId );
         }
         else if (m_dirty)
         {
@@ -73,7 +74,6 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
         Debug.Log( $"CLICKED: ROW: {RowIndex}    COL: {ColumnIndex}" );
 
         m_card.IsSelected = !m_card.IsSelected;
-        m_card.Message = "BARF";
 
         m_dirty = true;
     }
