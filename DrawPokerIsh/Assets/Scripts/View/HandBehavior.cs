@@ -76,4 +76,15 @@ public class HandBehavior : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+
+    [AEventHandler]
+    public void OnResetGame( ResetGameMessage _ )
+    {
+        Debug.Log( "Resetting Hand " + Index );
+            
+        Dispatcher.Default.Post( new SetInitialHand( Index, StartingHand, "" ) );
+        Dispatcher.Default.Post( new SetHeldCards( new int[0] ) );
+        Dispatcher.Default.Post( "" );
+
+    }
 }
