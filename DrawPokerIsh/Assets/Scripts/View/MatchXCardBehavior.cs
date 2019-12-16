@@ -44,6 +44,7 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
             var req = new RequestCardController( RowIndex, ColumnIndex );
             Dispatcher.PostDefault( req );
             m_card = req.CardController;
+            m_card.CardBehavior = this;
 
             var card = PlayingCard.From2String( InitialCard2Char );
             if (card != null && m_card != null)

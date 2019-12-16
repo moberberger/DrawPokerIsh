@@ -19,21 +19,18 @@ public class MatchXController : MonoBehaviour
     {
         m_cards = ReflectionExtenstions.CreatePopulatedArray<CardController>( 25 );
 
-        foreach (var c in m_cards)
+        for (int i = 0; i < m_cards.Length; i++)
+        {
+            var c = m_cards[i];
             c.CardId = Rng.Default.Next( 52 );
+            c.CardIndex = i;
+        }
     }
 
     void Start()
     {
         Dispatcher.PostDefault( Stage );
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     [AEventHandler]
     public void OnReqCardController( RequestCardController req )
@@ -48,7 +45,18 @@ public class MatchXController : MonoBehaviour
         if (m_cards.Count( c => c.IsSelected ) == 4)
         {
             Dispatcher.PostDefault( "4 of a Kind = 25" );
-            foreach (var c in m_cards) c.IsSelected = false;
+            foreach (var c in m_cards.Where( c => c.IsSelected ))
+            {
+                for (var row = c.CardBehavior.RowIndex; row > 0; row--)
+                {
+                    int idx = row * 5 + c.CardBehavior.ColumnIndex;
+                    int idxAbove = idx - 5;
+                    m_cards[idx].CardId = m_cards[idxAbove].CardId;
+                }
+                m_cards[c.CardBehavior.ColumnIndex].CardId = -1;
+                c.IsSelected = false;
+            }
+
             Stage *= 2;
             Dispatcher.PostDefault( Stage );
         }

@@ -7,6 +7,9 @@ using Morpheus;
 
 public class CardController
 {
+    public MatchXCardBehavior CardBehavior;
+    public int CardIndex;
+
     public bool IsSelected;
     public bool IsUpsideDown;
     public string Message;
