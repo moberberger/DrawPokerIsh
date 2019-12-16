@@ -16,7 +16,7 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
 {
     private CardController m_card;
     private bool m_dirty = true;
-
+    private int m_stage;
 
     public int RowIndex;
     public int ColumnIndex;
@@ -24,10 +24,17 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
     public int AvailableStage = 0;
 
 
+
     public DeckOfCardsController CardImages;
     public Image CardImage;
     public TextMeshProUGUI MessageObject;
     public Image SelectedImage;
+
+
+
+    private bool IsValidStage() => (m_stage & AvailableStage) != 0;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -65,16 +72,33 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
             MessageObject.text = m_card.Message;
             SelectedImage.enabled = m_card.IsSelected;
 
+            if (IsValidStage())
+                CardImage.color = new Color( 0.6f, 0.75f, 1, 1 );
+            else
+                CardImage.color = new Color( 1, 1, 1, 1 );
+
             m_dirty = false;
         }
     }
 
     public void OnPointerClick( PointerEventData eventData )
     {
-        Debug.Log( $"CLICKED: ROW: {RowIndex}    COL: {ColumnIndex}" );
+        if (!IsValidStage())
+        {
+            Dispatcher.PostDefault( "Invalid Selection" );
+            return;
+        }
 
         m_card.IsSelected = !m_card.IsSelected;
+        m_dirty = true;
+        Dispatcher.PostDefault( "" );
+        Dispatcher.PostDefault( new CardClicked( m_card ) );
+    }
 
+    [AEventHandler]
+    public void OnStageSet( int stage )
+    {
+        m_stage = stage;
         m_dirty = true;
     }
 }
