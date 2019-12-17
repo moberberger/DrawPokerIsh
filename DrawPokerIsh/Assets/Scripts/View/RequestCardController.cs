@@ -1,12 +1,10 @@
 ﻿public class RequestCardController
 {
-    public int RowIndex;
-    public int ColumnIndex;
     public CardController CardController;
+    public MatchXCardBehavior Behavior;
 
-    public RequestCardController( int rowIndex, int columnIndex )
+    public RequestCardController( MatchXCardBehavior matchXCardBehavior )
     {
-        this.RowIndex = rowIndex;
-        this.ColumnIndex = columnIndex;
+        Behavior = matchXCardBehavior;
     }
 }
