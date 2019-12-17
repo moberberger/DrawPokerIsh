@@ -39,31 +39,32 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        if (Application.isPlaying)
-        {
-            var req = new RequestCardController( RowIndex, ColumnIndex );
-            Dispatcher.PostDefault( req );
-            m_card = req.CardController;
-            m_card.CardBehavior = this;
+        if (!Application.isPlaying) return;
 
-            var card = PlayingCard.From2String( InitialCard2Char );
-            if (card != null && m_card != null)
-            {
-                m_card.CardId = card.CardId;
-            }
+        var req = new RequestCardController( RowIndex, ColumnIndex );
+        Dispatcher.PostDefault( req );
+        m_card = req.CardController;
+        m_card.CardBehavior = this;
+
+        var card = PlayingCard.From2String( InitialCard2Char );
+        if (card != null && m_card != null)
+        {
+            m_card.CardId = card.CardId;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (m_dirty && !Application.isPlaying)
+        if (!m_dirty) return;
+
+        if (!Application.isPlaying)
         {
             var cardId = PlayingCard.IdFrom2String( InitialCard2Char );
             var sprite = CardImages.GetSprite( cardId );
             CardImage.sprite = sprite;
         }
-        else if (m_dirty)
+        else
         {
             var id = m_card.IsUpsideDown ? -1 : (int) m_card.CardId;
             var req = new CardSpriteRequest( id );
