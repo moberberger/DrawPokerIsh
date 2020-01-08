@@ -1043,6 +1043,59 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4523316313402529537, guid: 15cd863b934beaa4d9c480e053590676, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 15cd863b934beaa4d9c480e053590676, type: 3}
+--- !u!1 &529692812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 529692813}
+  - component: {fileID: 529692814}
+  m_Layer: 5
+  m_Name: MatchX Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &529692813
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529692812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1624973550}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &529692814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529692812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b03618ae2eb7f0419d23e20baf172b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardPrefab: {fileID: 6181638911087185181, guid: 15cd863b934beaa4d9c480e053590676,
+    type: 3}
+  CardBoard: {fileID: 409544337}
+  DevGrid: {fileID: 1411386142}
+  CardImages: {fileID: 451965520}
 --- !u!1001 &552712240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1291,8 +1344,8 @@ RectTransform:
   m_Father: {fileID: 1624973550}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8125}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.033333335, y: 0.8125}
+  m_AnchorMax: {x: 0.96666664, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1355,7 +1408,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 144
+  m_fontSize: 136.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4754,7 +4807,6 @@ GameObject:
   - component: {fileID: 1624973549}
   - component: {fileID: 1624973548}
   - component: {fileID: 1624973547}
-  - component: {fileID: 1624973551}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4837,6 +4889,7 @@ RectTransform:
   - {fileID: 409544338}
   - {fileID: 596053321}
   - {fileID: 1085078869}
+  - {fileID: 529692813}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4845,23 +4898,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1624973551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1624973546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b03618ae2eb7f0419d23e20baf172b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardPrefab: {fileID: 6181638911087185181, guid: 15cd863b934beaa4d9c480e053590676,
-    type: 3}
-  CardBoard: {fileID: 409544337}
-  DevGrid: {fileID: 1411386142}
-  CardImages: {fileID: 451965520}
 --- !u!224 &1650620195 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3196576485740403284, guid: 15cd863b934beaa4d9c480e053590676,
