@@ -26,18 +26,7 @@ public class MatchXController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        m_cards = ReflectionExtenstions.CreatePopulatedArray<CardController>( 25 );
-        for (int row = 0; row < 5; row++)
-        {
-            for (int col = 0; col < 5; col++)
-            {
-                int idx = row * 5 + col;
-                var card = m_cards[idx];
-                card.Row = row;
-                card.Column = col;
-                card.CardIndex = idx;
-            }
-        }
+        m_cards = ReflectionExtenstions.CreatePopulatedArray<CardController>( 25, index => new CardController( index ) );
     }
 
 
@@ -50,33 +39,24 @@ public class MatchXController : MonoBehaviour
 
         foreach (var card in m_cards)
         {
-            var go = card.GameObject = Instantiate( CardPrefab );
-            var cb = card.CardBehavior = go.GetComponentInChildren<MatchXCardBehavior>();
-            cb.RowIndex = card.Row;
-            cb.ColumnIndex = card.Column;
-            cb.CardImages = CardImages;
-            cb.CardController = card;
+            card.GameObject = Instantiate( CardPrefab );
+            card.InitializeGameObject( CardImages, CardBoard );
 
-            go.transform.SetParent( CardBoard.transform, false );
-            go.transform.position = GetXY( card.Row - 5, card.Column );
-
-            float time = 2 + (5 - (float) card.Row) / 5 + (float) Rng.Default.NextDouble() / 2f;
-            var finalPos = GetXY( card.Row, card.Column );
-
-            go.transform.DOMove( finalPos, time )
-                .SetEase( Ease.OutBounce )
-                .OnComplete( () =>
+            TweenCallback enableInpotWhenAllComplete = () =>
+            {
+                if (++m_finishedCount == 25)
                 {
-                    if (++m_finishedCount == 25)
-                    {
-                        Dispatcher.PostDefault( "Find 4 of a Kind hands" );
-                        m_acceptInput = true;
-                    }
-                } );
+                    Dispatcher.PostDefault( "Find 4 of a Kind hands" );
+                    m_acceptInput = true;
+                }
+            };
+
+            card.DropCard( card.Row - 5, card.Row, enableInpotWhenAllComplete );
         }
 
         yield return null;
     }
+
 
     [AEventHandler]
     public void InitCard( SetInitialCard cmd )
@@ -120,21 +100,12 @@ public class MatchXController : MonoBehaviour
             }
             else
             {
-                msg = "Not Connected";
+                msg = "Card Not Connected";
             }
         }
 
         Dispatcher.PostDefault( msg );
     }
-
-
-
-    const int CARD_WIDTH = 165;
-    const int CARD_HEIGHT = 242;
-    const int SPACING = 15;
-    public static float GetX( int column ) => SPACING / 2 + CARD_WIDTH / 2 + column * (SPACING + CARD_WIDTH);
-    public static float GetY( int row ) => 1300 - (SPACING + CARD_HEIGHT / 2 + row * (SPACING + CARD_HEIGHT));
-    public static Vector3 GetXY( int row, int col ) => new Vector3( GetX( col ), GetY( row ) );
 
 
 
