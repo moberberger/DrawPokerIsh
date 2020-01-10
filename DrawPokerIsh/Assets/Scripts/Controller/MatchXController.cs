@@ -20,7 +20,7 @@ public class MatchXController : MonoBehaviour
     private int m_finishedCount = 0;
 
     private DeckOfCards m_deck = new DeckOfCards( 52 );
-
+    private string m_animationCompleteMessage = "";
 
     IEnumerator Start()
     {
@@ -134,6 +134,13 @@ public class MatchXController : MonoBehaviour
         msg += byRank.Where( g => g.Count() == max ).Select( g => g.Key + 2 ).OrderBy( x => x ).JoinAsString( ", " );
 
         Debug.Log( msg );
+
+        if (max < 4)
+        {
+            m_acceptInput = false;
+            m_animationCompleteMessage = "No More Options";
+            Dispatcher.Default.Post( m_animationCompleteMessage, EDispatchMode.Batched );
+        }
     }
 
     private void HandleColumn( IEnumerable<MatchXCardBehavior> cardsInColumn )
@@ -158,6 +165,7 @@ public class MatchXController : MonoBehaviour
                     Debug.LogWarning( "Out of cards" );
                     foreach (var c in m_cards) c.DropCard( c.Row - 1, c.Row );
                     m_acceptInput = false;
+                    Dispatcher.PostDefault( "You Won!", EDispatchMode.Batched );
                 }
                 var id = (newCard == null) ? -1 : newCard.CardId;
                 card.RecycleCard( newRow, id );
@@ -174,6 +182,8 @@ public class MatchXController : MonoBehaviour
         m_deck.Shuffle();
         m_finishedCount = 0;
         m_acceptInput = true;
+        Dispatcher.Default.Post( "" );
+        m_animationCompleteMessage = "Find 4 of a Kind hands";
 
         foreach (var card in m_cards)
         {
@@ -184,7 +194,7 @@ public class MatchXController : MonoBehaviour
             {
                 if (++m_finishedCount == 25)
                 {
-                    Dispatcher.PostDefault( "Find 4 of a Kind hands" );
+                    Dispatcher.PostDefault( m_animationCompleteMessage );
                     m_acceptInput = true;
                 }
             };
