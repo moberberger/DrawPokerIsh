@@ -153,7 +153,12 @@ public class MatchXController : MonoBehaviour
 
                 selectedCount++;
                 var newCard = m_deck.GetRandomCard();
-                if (newCard == null) Debug.LogWarning( "Out of cards" );
+                if (newCard == null)
+                { // when we're out of cards, do something special or something.
+                    Debug.LogWarning( "Out of cards" );
+                    foreach (var c in m_cards) c.DropCard( c.Row - 1, c.Row );
+                    m_acceptInput = false;
+                }
                 var id = (newCard == null) ? -1 : newCard.CardId;
                 card.RecycleCard( newRow, id );
             }
@@ -168,6 +173,7 @@ public class MatchXController : MonoBehaviour
     {
         m_deck.Shuffle();
         m_finishedCount = 0;
+        m_acceptInput = true;
 
         foreach (var card in m_cards)
         {
