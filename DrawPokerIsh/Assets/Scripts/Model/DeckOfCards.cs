@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Morpheus;
 using Protobuf.Cards;
@@ -15,32 +16,58 @@ using Protobuf.Cards;
 public class DeckOfCards
 {
     private readonly int m_size;
-    bool[] m_deck;
+    private bool[] m_dealtCardFlags;
+    private int[] m_availableCardListTemp;
 
     public DeckOfCards( int size, IEnumerable<PlayingCard> cardsDealt = null )
     {
-        m_deck = new bool[size];
+        m_dealtCardFlags = new bool[size];
+        m_availableCardListTemp = new int[size];
+
         m_size = size;
 
         if (cardsDealt != null)
         {
             foreach (var c in cardsDealt)
-                m_deck[c.CardId] = true;
+                m_dealtCardFlags[c.CardId] = true;
         }
     }
 
     public PlayingCard GetRandomCard()
     {
-        lock (m_deck)
-            while (true)
+        lock (m_dealtCardFlags)
+        {
+            for (int i = 0; i < 100; i++)
             {
                 var id = Rng.Default.Next( m_size );
-                if (!m_deck[id]) // not set yet
+                if (!m_dealtCardFlags[id]) // not set yet
                 {
-                    m_deck[id] = true;
+                    m_dealtCardFlags[id] = true;
                     return new PlayingCard( id );
                 }
             }
+
+            int availableCardCount = 0;
+            for (int i = 0; i < m_dealtCardFlags.Length; i++)
+            {
+                if (!m_dealtCardFlags[i])
+                    m_availableCardListTemp[availableCardCount++] = i;
+            }
+            if (availableCardCount == 0)
+                return null;
+
+            var selIdx = Rng.Default.Next( availableCardCount );
+            var cardId = m_availableCardListTemp[selIdx];
+            m_dealtCardFlags[cardId] = true;
+            return new PlayingCard( cardId );
+        }
+    }
+
+    public bool RemoveCard( int cardId )
+    {
+        var wasInDeck = m_dealtCardFlags[cardId];
+        m_dealtCardFlags[cardId] = true;
+        return wasInDeck;
     }
 
     public IEnumerable<PlayingCard> GetRandomCards( int count )
@@ -53,7 +80,7 @@ public class DeckOfCards
 
     public void Shuffle()
     {
-        lock (m_deck)
-            Array.Clear( m_deck, 0, m_deck.Length );
+        lock (m_dealtCardFlags)
+            Array.Clear( m_dealtCardFlags, 0, m_dealtCardFlags.Length );
     }
 }

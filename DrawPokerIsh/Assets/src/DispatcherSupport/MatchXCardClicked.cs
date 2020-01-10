@@ -1,9 +1,9 @@
 ﻿public class MatchXCardClicked
 {
-    public MatchXCardBehavior MatchXCardBehavior;
+    public MatchXCardBehavior Card;
 
     public MatchXCardClicked( MatchXCardBehavior _matchXCardBehavior )
     {
-        MatchXCardBehavior = _matchXCardBehavior;
+        Card = _matchXCardBehavior;
     }
 }

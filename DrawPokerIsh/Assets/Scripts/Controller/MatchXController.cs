@@ -7,36 +7,38 @@ using System;
 using System.Linq;
 
 using DG.Tweening;
-
-
-
+using UnityEngine.UI;
 
 public class MatchXController : MonoBehaviour
 {
-    private MatchXCardBehavior[] m_cards;
     public GameObject CardPrefab;
-    public GameObject CardBoard;
-    public GameObject DevGrid;
     public DeckOfCardsController CardImages;
+    public GridLayoutGroup GridLayoutGroup;
 
+    private MatchXCardBehavior[] m_cards;
     private bool m_acceptInput = false;
     private int m_finishedCount = 0;
 
-    GDI get these two fucking classes to work together. They should both be "view" centric
+    private DeckOfCards m_deck = new DeckOfCards( 52 );
 
-    void Start()
+
+    IEnumerator Start()
     {
-        m_cards = GetComponentsInChildren<MatchXCardBehavior>();
+        yield return new WaitForEndOfFrame();
 
-        DevGrid.SetActive( false );
+        GridLayoutGroup.enabled = false;
+
+        m_cards = GetComponentsInChildren<MatchXCardBehavior>();
+        Debug.LogWarning( "Count: " + m_cards.Count() );
 
         foreach (var card in m_cards)
         {
             card.CardImages = CardImages;
-            card.gameObject.transform.SetParent( this.transform );
 
-
-            card.InitializeGameObject( CardImages, CardBoard );
+            var cardInit = card.GetComponent<MatchXInitializeCardScript>();
+            card.ResetCard( cardInit.CardId, cardInit.Row, cardInit.Column );
+            if (m_deck.RemoveCard( cardInit.CardId ))
+                Debug.Log( $"Duplicate!: [{cardInit.Row},{cardInit.Column}] = {cardInit.CardId}" );
 
             TweenCallback enableInputWhenAllComplete = () =>
             {
@@ -49,6 +51,8 @@ public class MatchXController : MonoBehaviour
 
             card.DropCard( card.Row - 5, card.Row, enableInputWhenAllComplete );
         }
+
+        yield return null;
     }
 
 
@@ -86,8 +90,10 @@ public class MatchXController : MonoBehaviour
                 {
                     var rowDiff = Math.Abs( c.Row - evt.Card.Row );
                     var colDiff = Math.Abs( c.Column - evt.Card.Column );
-                    return (rowDiff == 0 && colDiff == 1) ||
-                           (colDiff == 0 && rowDiff == 1);
+                    return true;
+                    //return rowDiff <= 1 && colDiff <= 1;
+                    //return (rowDiff == 0 && colDiff == 1) ||
+                    //       (colDiff == 0 && rowDiff == 1);
                 } ))
             {
                 evt.Card.IsSelected = true;
@@ -110,20 +116,29 @@ public class MatchXController : MonoBehaviour
     private void HandleFoundHand()
     {
         var byCol = m_cards.GroupBy( c => c.Column );
-        Debug.Log( byCol.Select( g => g.Key ).JoinAsString( ", " ) );
 
         foreach (var columnOfCards in byCol)
         {
-            Debug.Log( $"Column: {columnOfCards.Key}" );
-            Debug.Log( $" Cards: {columnOfCards.Select( c => c.Row ).JoinAsString( ", " )}" );
-
             HandleColumn( columnOfCards );
         }
+
+        ShowLargestSet();
     }
 
-    private void HandleColumn( IEnumerable<CardController> cardsInColumn )
+    private void ShowLargestSet()
     {
-        var cards = new CardController[5];
+        var byRank = m_cards.Where( c => c.CardId >= 0 ).GroupBy( c => c.CardId >> 2 );
+        var max = byRank.Max( g => g.Count() );
+
+        var msg = $"Largest Set = {max} ... ";
+        msg += byRank.Where( g => g.Count() == max ).Select( g => g.Key + 2 ).OrderBy( x => x ).JoinAsString( ", " );
+
+        Debug.Log( msg );
+    }
+
+    private void HandleColumn( IEnumerable<MatchXCardBehavior> cardsInColumn )
+    {
+        var cards = new MatchXCardBehavior[5];
 
         foreach (var c in cardsInColumn) cards[c.Row] = c;
 
@@ -131,19 +146,46 @@ public class MatchXController : MonoBehaviour
         for (int i = cards.Length - 1; i >= 0; i--)
         {
             var card = cards[i];
-            card.Message = "";
 
             if (card.IsSelected)
             {
+                int newRow = selectedCount;
+
                 selectedCount++;
+                var newCard = m_deck.GetRandomCard();
+                if (newCard == null) Debug.LogWarning( "Out of cards" );
+                var id = (newCard == null) ? -1 : newCard.CardId;
+                card.RecycleCard( newRow, id );
             }
             else
             {
                 card.SetRowWithAnimation( card.Row + selectedCount );
             }
         }
+    }
 
-        cards.Where( c => c.IsSelected )
-            .ForEach( ( c, idx ) => c.RecycleCard( idx ) );
+    public void RandomizeBoard()
+    {
+        m_deck.Shuffle();
+        m_finishedCount = 0;
+
+        foreach (var card in m_cards)
+        {
+            var cid = m_deck.GetRandomCard().CardId;
+            card.SetCardId( cid );
+
+            TweenCallback enableInputWhenAllComplete = () =>
+            {
+                if (++m_finishedCount == 25)
+                {
+                    Dispatcher.PostDefault( "Find 4 of a Kind hands" );
+                    m_acceptInput = true;
+                }
+            };
+
+            card.DropCard( card.Row - 5, card.Row, enableInputWhenAllComplete );
+        }
+
+        ShowLargestSet();
     }
 }

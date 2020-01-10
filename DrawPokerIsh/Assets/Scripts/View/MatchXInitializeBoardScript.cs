@@ -17,19 +17,24 @@ public class MatchXInitializeBoardScript : MonoBehaviour
     public DeckOfCardsController CardImages;
     public string[] RowsOfCardsSeparatedBySpaces = new string[5];
 
+    void Start()
+    {
+        SetChildren();
+    }
+
     void Update()
     {
         if (!Application.isPlaying)
-        {
-            GetComponentsInChildren<MatchXInitializeCardScript>().ForEach( ( cb, idx ) =>
-            {
-                var r = cb.Row = idx / 5;
-                var c = cb.Column = idx % 5;
-                cb.CardId = GetCardId( r, c );
-                cb.Sprite = CardImages.GetSprite( cb.CardId );
-            } );
-        }
+            SetChildren();
     }
+
+    private void SetChildren() => GetComponentsInChildren<MatchXInitializeCardScript>().ForEach( ( _cinit, _idx ) =>
+    {
+        var r = _cinit.Row = _idx / 5;
+        var c = _cinit.Column = _idx % 5;
+        _cinit.CardId = GetCardId( r, c );
+        _cinit.Sprite = CardImages.GetSprite( _cinit.CardId );
+    } );
 
     public int GetCardId( int r, int c )
     {

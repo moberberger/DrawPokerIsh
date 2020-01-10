@@ -17,43 +17,92 @@ using DG.Tweening;
 
 public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
 {
-    private bool m_dirty = true;
+    private bool m_dirty = false;
 
-    public bool IsUpsideDown = false;
     public int CardId = -1;
+    public int Row = -1;
     public int Column = -1;
+    public bool IsSelected = false;
+    public bool IsUpsideDown = false;
+    public string Message = "";
+
+    public DeckOfCardsController CardImages;
 
 
-    
     // These come from the Prefab (assuming)
     public Image CardImage;
-    public TextMeshProUGUI MessageObject;
     public Image SelectedImage;
+    public TextMeshProUGUI MessageObject;
 
 
     void Update()
     {
-        if (!m_dirty) return;
+        if (m_dirty)
+        {
+            var id = IsUpsideDown ? -1 : (int) CardId;
+            var sprite = CardImages.GetSprite( id );
+            CardImage.sprite = sprite;
+            MessageObject.text = Message;
+            SelectedImage.enabled = IsSelected;
 
-        var id = CardController.IsUpsideDown ? -1 : (int) CardController.CardId;
-        CardImage.sprite = CardImages.GetSprite( id );
-        MessageObject.text = CardController.Message;
-        SelectedImage.enabled = CardController.IsSelected;
+            //Debug.Log( $"Update: [{Row},{Column}] = {CardId}" );
 
-        m_dirty = false;
+            m_dirty = false;
+        }
     }
 
     public void OnPointerClick( PointerEventData eventData )
     {
-        m_dirty = true;
-
         Dispatcher.PostDefault( new MatchXCardClicked( this ) );
-    }
-
-    public void RecycleCard()
-    {
         m_dirty = true;
     }
+
+    public void ResetCard( int _cardId, int _row, int _column )
+    {
+        Row = _row;
+        Column = _column;
+        SetCardId( _cardId );
+
+        //Debug.Log( $"Reset: [{Row},{Column}] = {CardId}" );
+    }
+
+
+    public void SetCardId( int cid )
+    {
+        CardId = cid;
+        IsSelected = false;
+        IsUpsideDown = false;
+        Message = "";
+        m_dirty = true;
+
+        //Debug.Log( $"SetCardId: [{Row},{Column}] = {CardId}" );
+    }
+
+    public void SetRowWithAnimation( int newRow )
+    {
+        if (newRow != Row)
+        {
+            int curRow = Row;
+            Row = newRow;
+            DropCard( curRow, newRow );
+            m_dirty = true;
+        }
+    }
+
+    public void RecycleCard( int newRow, int cardId )
+    {
+        Row = newRow;
+        DropCard( newRow - 5, newRow );
+        IsSelected = false;
+        IsUpsideDown = false;
+        Message = "*";
+        CardId = cardId;
+        m_dirty = true;
+
+        // Debug.Log( $"Recycle: [{Row},{Column}] = {CardId}" );
+    }
+
+
 
 
     const int CARD_WIDTH = 165;
@@ -75,14 +124,11 @@ public class MatchXCardBehavior : MonoBehaviour, IPointerClickHandler
 
         float time = minTime + lerpTime + (float) Rng.Default.NextDouble() * randomScale;
 
-        GameObject.transform.position = initialPos;
-        var tween = GameObject.transform.DOMove( finalPos, time ).SetEase( easeFn );
+        transform.position = initialPos;
+        var tween = transform.DOMove( finalPos, time ).SetEase( easeFn );
         if (onComplete != null)
             tween.OnComplete( onComplete );
 
         return tween;
     }
-
-
-
 }
