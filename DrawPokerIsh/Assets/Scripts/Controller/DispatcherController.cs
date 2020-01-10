@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using Morpheus;
 
@@ -48,5 +49,11 @@ public class DispatcherController : MonoBehaviour
     {
         if (ExecuteBatchInUpdate)
             Dispatcher.Default.ExecuteBatch();
+    }
+
+    [AEventHandler]
+    public void OnDispatcherException( DispatcherException ex )
+    {
+        Debug.LogError( $"Exception from Dispatcher: {ex}" );
     }
 }

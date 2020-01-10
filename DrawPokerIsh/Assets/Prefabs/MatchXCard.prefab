@@ -136,7 +136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05006adbe06625c47ac45562072feadf, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 3196576485740403284}
   - component: {fileID: 3459362201961365984}
   - component: {fileID: 4523316313402529537}
-  - component: {fileID: 5779802382091143312}
+  - component: {fileID: 1830297035472873347}
   m_Layer: 5
   m_Name: MatchXCard
   m_TagString: Untagged
@@ -362,13 +362,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34494ad476487e4faaa98903ff24853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RowIndex: 0
-  ColumnIndex: 2
   CardImages: {fileID: 0}
   CardImage: {fileID: 3528361129935500479}
   MessageObject: {fileID: 1896488994895703514}
   SelectedImage: {fileID: 8483492057113278725}
---- !u!114 &5779802382091143312
+--- !u!114 &1830297035472873347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,10 +375,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6181638911087185181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044680e2f1d1052468b06fe3210ba1af, type: 3}
+  m_Script: {fileID: 11500000, guid: 06989688ba36c6048a5ec9b6f18acab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 165
-  Height: 242
-  X: 45
-  Y: 80
+  Row: 0
+  Column: 0
+  CardId: 0
+  Sprite: {fileID: 0}
+  CardImage: {fileID: 3528361129935500479}

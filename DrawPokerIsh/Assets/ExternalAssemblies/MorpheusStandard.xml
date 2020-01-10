@@ -334,26 +334,26 @@
             </param>
             <returns>The CCITT-CRC of number supplied</returns>
         </member>
-        <member name="T:Morpheus.Combinations">
+        <member name="T:Morpheus.CombinationGenerator">
             <summary>
-            An enumerator used to return all possible combinations of numbers between 1 and N taken
-            K at a time.
+            An enumerator used to return all possible combinations of numbers
+            between 1 and N taken K at a time.
             </summary>
         </member>
-        <member name="M:Morpheus.Combinations.Integers(System.Int32,System.Int32)">
+        <member name="M:Morpheus.CombinationGenerator.Integers(System.Int32,System.Int32)">
             <summary>
-            An enumerator used to return all possible combinations of numbers between 1 and N
-            taken K at a time.
+            An enumerator used to return all possible combinations of numbers
+            between 1 and N taken K at a time.
             </summary>
             <remarks>
-            It is critical to note that the returned array SHOULD NOT BE MODIFIED! It represents
-            the state of the generator. If its modified, then the generator will not work
-            correctly.
+            It is critical to note that the returned array SHOULD NOT BE
+            MODIFIED! It represents the state of the generator. If its modified,
+            then the generator will not work correctly.
             </remarks>
             <returns>
-            A set of _K unique integers from the set of [0.N). Caller SHOULD NOT MODIFY ANY
-            ELEMENTS OF THIS ARRAY. To achieve performance, this returned array is also the
-            curent state of the generator.
+            A set of _K unique integers from the set of [0.N). Caller SHOULD NOT
+            MODIFY ANY ELEMENTS OF THIS ARRAY. To achieve performance, this
+            returned array is also the curent state of the generator.
             </returns>
             <remarks>
             <code>
@@ -376,15 +376,29 @@
             </code>
             </remarks>
         </member>
-        <member name="T:Morpheus.Permutations">
+        <member name="M:Morpheus.CombinationGenerator.Combinations(System.ValueTuple{System.Int32,System.Int32})">
             <summary>
-            A fast way of returning all permutations of _K integers at a time from a set of _N
-            integers.
+            Helper for a tuple
+            </summary>
+            <param name="_NK">
+            The <see cref="T:System.ValueTuple`2"/> containing the _N and _K
+            parameters
+            </param>
+            <returns>
+            A set of _K unique integers from the set of [0.N). Caller SHOULD NOT
+            MODIFY ANY ELEMENTS OF THIS ARRAY. To achieve performance, this
+            returned array is also the curent state of the generator.
+            </returns>
+        </member>
+        <member name="T:Morpheus.PermutationGenerator">
+            <summary>
+            A fast way of returning all permutations of _K integers at a time from a
+            set of _N integers.
             </summary>
             <remarks>
-            It is critical to note that the returned array SHOULD NOT BE MODIFIED! It represents the
-            state of the permutation generator. If its modified, then the generator will not work
-            correctly.
+            It is critical to note that the returned array SHOULD NOT BE MODIFIED!
+            It represents the state of the permutation generator. If its modified,
+            then the generator will not work correctly.
             <code>
             var expected = new HashSet&lt;string>
             {
@@ -409,22 +423,38 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Morpheus.Permutations.Integers(System.Int32,System.Int32)">
+        <member name="M:Morpheus.PermutationGenerator.Permutations(System.Int32,System.Int32)">
             <summary>
-            A fast way of returning all permutations of _K integers at a time from a set of _N
-            integers.
+            A fast way of returning all permutations of _K integers at a time
+            from a set of _N integers.
             </summary>
             <remarks>
-            It is critical to note that the returned array SHOULD NOT BE MODIFIED! It represents
-            the state of the permutation generator. If its modified, then the generator will not
-            work correctly.
+            It is critical to note that the returned array SHOULD NOT BE
+            MODIFIED! It represents the state of the permutation generator. If
+            its modified, then the generator will not work correctly.
             </remarks>
-            <param name="_N">The highest of the integers to return. Returns [0.._N)</param>
+            <param name="_N">
+            The highest of the integers to return. Returns [0.._N)
+            </param>
             <param name="_K">The number of integers to return each time.</param>
             <returns>
-            A set of _K unique integers from the set of [0.N). Caller SHOULD NOT MODIFY ANY
-            ELEMENTS OF THIS ARRAY. To achieve performance, this returned array is also the
-            curent state of the generator.
+            A set of _K unique integers from the set of [0.N). Caller SHOULD NOT
+            MODIFY ANY ELEMENTS OF THIS ARRAY. To achieve performance, this
+            returned array is also the curent state of the generator.
+            </returns>
+        </member>
+        <member name="M:Morpheus.PermutationGenerator.Permutations(System.ValueTuple{System.Int32,System.Int32})">
+            <summary>
+            Helper for a tuple
+            </summary>
+            <param name="_NK">
+            The <see cref="T:System.ValueTuple`2"/> containing the _N and _K
+            parameters
+            </param>
+            <returns>
+            A set of _K unique integers from the set of [0.N). Caller SHOULD NOT
+            MODIFY ANY ELEMENTS OF THIS ARRAY. To achieve performance, this
+            returned array is also the curent state of the generator.
             </returns>
         </member>
         <member name="T:Morpheus.CChromosome">
@@ -5964,192 +5994,247 @@
             Helper method to try to resolve a type name.
             </summary>
             <remarks>
-            Will try to overcome the inherent limitation of Type.GetType that only looks in
-            mscorlib and in the current assembly. This will be addressed by iterating through
-            all loaded assemblies if Type.GetType does not return anything.
+            Will try to overcome the inherent limitation of Type.GetType that
+            only looks in mscorlib and in the current assembly. This will be
+            addressed by iterating through all loaded assemblies if Type.GetType
+            does not return anything.
             </remarks>
             <param name="_name">The name to resolve</param>
             <returns>
-            The type associated with the name if it exists, or NULL if no type can be found.
+            The type associated with the name if it exists, or NULL if no type
+            can be found.
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.BetterGetType(System.String,System.Boolean)">
             <summary>
-            Helper method to try to resolve a type name using a combination of a "cache" of
-            already-found names and the search through all assemblies for a matching type name
+            Helper method to try to resolve a type name using a combination of a
+            "cache" of already-found names and the search through all assemblies
+            for a matching type name
             </summary>
             <remarks>
-            Because of the order in which assemblies get loaded, the "foreach" loop in
-            <see cref="M:Morpheus.ReflectionExtenstions.BetterGetType(System.String)"/> usually loops through all the system (microsoft)
-            assemblies before it gets to your assemblies. As such, this cache was implemented to
-            "remember" if you've passed in any given type name and to look that name up
-            immediately before trying to loop through all of the loaded assemblies. This is not
-            the default behavior because its possible, when doing a lot of "custom" assembly
-            loading, the application may rely on a new search every time (this argument may be
-            fallacious).
+            Because of the order in which assemblies get loaded, the "foreach"
+            loop in <see cref="M:Morpheus.ReflectionExtenstions.BetterGetType(System.String)"/> usually loops through
+            all the system (microsoft) assemblies before it gets to your
+            assemblies. As such, this cache was implemented to "remember" if
+            you've passed in any given type name and to look that name up
+            immediately before trying to loop through all of the loaded
+            assemblies. This is not the default behavior because its possible,
+            when doing a lot of "custom" assembly loading, the application may
+            rely on a new search every time (this argument may be fallacious).
             </remarks>
             <param name="_name">
             The "full name" of the class, WITHOUT ASSEMBLY QUALIFICATION
             </param>
             <param name="_useCacheOfTypes">
-            When TRUE, use the cache before looping through all assemblies to find the type
+            When TRUE, use the cache before looping through all assemblies to
+            find the type
             </param>
             <returns>
-            The type associated with the name if it exists, or NULL if no type can be found.
+            The type associated with the name if it exists, or NULL if no type
+            can be found.
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetTypesWithAttribute``1(System.Func{``0,System.Boolean})">
             <summary>
-            Get all loaded types that have a specified attribute and that attribute matches a
-            filter condition
+            Get all loaded types that have a specified attribute and that
+            attribute matches a filter condition
             </summary>
-            <typeparam name="T">The Type of the attribute that is required</typeparam>
+            <typeparam name="T">
+            The Type of the attribute that is required
+            </typeparam>
             <param name="_filter">
-            The filter to use on the attributes before a Type is returned. If null, then no
-            filter is applied and all found attributes are returned.
+            The filter to use on the attributes before a Type is returned. If
+            null, then no filter is applied and all found attributes are
+            returned.
             </param>
             <returns>
-            All Types in all loaded assemblies that have the specified attribute that conform to
-            the spefified filter
+            All Types in all loaded assemblies that have the specified attribute
+            that conform to the spefified filter
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetStaticFunctionsWithAttribute``1(System.Boolean)">
             <summary>
-            Search all-or-current assembly for all public static functions that are decorated
-            with a given attribute.
+            Search all-or-current assembly for all public static functions that
+            are decorated with a given attribute.
             </summary>
-            <typeparam name="T">The Type of the Attribute to search for</typeparam>
+            <typeparam name="T">
+            The Type of the Attribute to search for
+            </typeparam>
             <param name="_allLoadedAssemblies">
-            TRUE- Look in all loaded assemblies, FALSE- Look only in the caller's assembly
+            TRUE- Look in all loaded assemblies, FALSE- Look only in the
+            caller's assembly
             </param>
             <returns>
-            A Dictionary with <see cref="T:System.Reflection.MethodInfo"/> objects as keys and Attributes (of type
-            T) as values.
+            A Dictionary with <see cref="T:System.Reflection.MethodInfo"/> objects as keys and
+            Attributes (of type T) as values.
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.HasAttribute(System.Reflection.MemberInfo,System.Type)">
             <summary>
-            Find out if a particular member has a specific attribute. Don't use this method if
-            you need the actual attribute objects- use the GetCustomAttributes method of the
-            member, as usual.
+            Find out if a particular member has a specific attribute. Don't use
+            this method if you need the actual attribute objects- use the
+            GetCustomAttributes method of the member, as usual.
             </summary>
             <param name="_member">The member to check</param>
-            <param name="_attribute">The Attribute that you're looking for</param>
-            <returns>TRUE if the attribute exists on the member, FALSE if not.</returns>
+            <param name="_attribute">
+            The Attribute that you're looking for
+            </param>
+            <returns>
+            TRUE if the attribute exists on the member, FALSE if not.
+            </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.HasAttribute``1(System.Reflection.MemberInfo)">
             <summary>
-            Find out if a particular member has a specific attribute. Don't use this method if
-            you need the actual attribute objects- use the GetCustomAttributes method of the
-            member, as usual.
+            Find out if a particular member has a specific attribute. Don't use
+            this method if you need the actual attribute objects- use the
+            GetCustomAttributes method of the member, as usual.
             </summary>
-            <typeparam name="TAttrType">The Attribute that you're looking for</typeparam>
+            <typeparam name="TAttrType">
+            The Attribute that you're looking for
+            </typeparam>
             <param name="_member">The member to check</param>
-            <returns>TRUE if the attribute exists on the member, FALSE if not</returns>
+            <returns>
+            TRUE if the attribute exists on the member, FALSE if not
+            </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetSingleAttribute``1(System.Reflection.MemberInfo)">
             <summary>
-            Return an attribute associated with a member, or null if no such attribute exists on
-            the member. Returns the "first" attribute if multiple attributes exist.
+            Return an attribute associated with a member, or null if no such
+            attribute exists on the member. Returns the "first" attribute if
+            multiple attributes exist.
             </summary>
-            <typeparam name="TAttrType">The Type of the attribute to find</typeparam>
+            <typeparam name="TAttrType">
+            The Type of the attribute to find
+            </typeparam>
             <param name="_member">The member to look for attributes on</param>
             <returns>
-            NULL if the attribute isn't associated with the member, or the first attribute found
-            on the member if one is.
+            NULL if the attribute isn't associated with the member, or the first
+            attribute found on the member if one is.
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.CreateWithConstructor(System.Type,System.Object[])">
             <summary>
-            Create a new instance of an object using the constructor parameters specified.
+            Create a new instance of an object using the constructor parameters
+            specified.
             </summary>
             <param name="_type">The Type of the object to create</param>
             <param name="_params">
-            The parameters to pass to the constructor. NULL implies the default constructor
+            The parameters to pass to the constructor. NULL implies the default
+            constructor
             </param>
             <returns>
-            An object of the type specified constructed using the parameters specified
+            An object of the type specified constructed using the parameters
+            specified
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.CreatePopulatedArray``1(System.Int32,System.Object[])">
             <summary>
-            A Helper function that will not only allocate an array of type T, but it will also
-            construct objects for each element in the array using whatever parameters for the
-            constructor were specified by the caller. The same rules for constructor parameters
-            apply here as do for <see cref="M:Morpheus.ReflectionExtenstions.CreateWithConstructor(System.Type,System.Object[])"/>
+            A Helper function that will not only allocate an array of type T,
+            but it will also construct objects for each element in the array
+            using whatever parameters for the constructor were specified by the
+            caller. The same rules for constructor parameters apply here as do
+            for <see cref="M:Morpheus.ReflectionExtenstions.CreateWithConstructor(System.Type,System.Object[])"/>
             </summary>
             <typeparam name="T">
-            The Type of objects in the array to create- All objects are of this type, so this
-            can't be an interface or abstract type
+            The Type of objects in the array to create- All objects are of this
+            type, so this can't be an interface or abstract type
             </typeparam>
             <param name="_size">
-            The number of elements in the array- All of these elements will be constructed
+            The number of elements in the array- All of these elements will be
+            constructed
             </param>
             <param name="_constructorParams">
-            A list of parameters which are to be passed to the constructors for all objects in
-            the array
+            A list of parameters which are to be passed to the constructors for
+            all objects in the array
             </param>
             <returns>
-            A new array of type T containing objects of type T constructed using the specified
-            constructor parameters
+            A new array of type T containing objects of type T constructed using
+            the specified constructor parameters
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.CreatePopulatedArray``1(System.Int32,System.Func{``0})">
             <summary>
-            A Helper function that will not only allocate an array of type T, but it will also
-            construct objects for each element in the array using whatever constructor function
-            provided by the caller
+            A Helper function that will not only allocate an array of type T,
+            but it will also construct objects for each element in the array
+            using whatever constructor function provided by the caller
             </summary>
             <typeparam name="T">
-            The Type of objects in the array to create- All objects are of this type, so this
-            can't be an interface or abstract type
+            The Type of objects in the array to create- All objects are of this
+            type, so this can't be an interface or abstract type
             </typeparam>
             <param name="_size">
-            The number of elements in the array- All of these elements will be constructed
+            The number of elements in the array- All of these elements will be
+            constructed
             </param>
-            <param name="_creator">The function used to create new objects of type T</param>
+            <param name="_creator">
+            The function used to create new objects of type T
+            </param>
             <returns>
-            A new array of type T containing objects of type T constructed using the specified
-            creation function
+            A new array of type T containing objects of type T constructed using
+            the specified creation function
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.CreatePopulatedArray``1(System.Int32,System.Func{System.Int32,``0})">
             <summary>
-            A Helper function that will not only allocate an array of type T, but it will also
-            construct objects for each element in the array using whatever constructor function
-            provided by the caller
+            A Helper function that will not only allocate an array of type T,
+            but it will also construct objects for each element in the array
+            using whatever constructor function provided by the caller
             </summary>
             <typeparam name="T">
-            The Type of objects in the array to create- All objects are of this type, so this
-            can't be an interface or abstract type
+            The Type of objects in the array to create- All objects are of this
+            type, so this can't be an interface or abstract type
             </typeparam>
             <param name="_size">
-            The number of elements in the array- All of these elements will be constructed
+            The number of elements in the array- All of these elements will be
+            constructed
             </param>
             <param name="_creator">
-            The function used to create new objects of type T. The index of the element to be
-            created is passed to this function.
+            The function used to create new objects of type T. The index of the
+            element to be created is passed to this function.
             </param>
             <returns>
-            A new array of type T containing objects of type T constructed using the specified
-            creation function
+            A new array of type T containing objects of type T constructed using
+            the specified creation function
+            </returns>
+        </member>
+        <member name="M:Morpheus.ReflectionExtenstions.CreatePopulatedGrid``1(System.Int32,System.Int32,System.Func{System.Int32,System.Int32,``0})">
+            <summary>
+            Helper to create a rectangular grid of elements. This is not a
+            jagged 2-d array.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="_rowCount"></param>
+            <param name="_columnCount"></param>
+            <param name="_creator">
+            If NULL, <see cref="M:System.Activator.CreateInstance(System.Type)"/> shall be used
+            to try to create an object using the default constructor.
+            </param>
+            <returns>
+            A two-dimensional array fully populated based on the _creator
+            function provided
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.ImplementsInterface(System.Type,System.Type)">
             <summary>
-            Determines if a Type inherits a specific Interface. This handles generic interfaces
-            correctly, in that passing in typeof( <see cref="T:System.Collections.Generic.IEnumerable`1"/> ) will check the
-            Type against any specific versions of <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            Determines if a Type inherits a specific Interface. This handles
+            generic interfaces correctly, in that passing in typeof(
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> ) will check the Type against any
+            specific versions of <see cref="T:System.Collections.Generic.IEnumerable`1"/>
             </summary>
             <param name="_type">The Type to check for the interface.</param>
-            <param name="_interfaceType">The Type of the Interface to look for</param>
-            <returns>TRUE if the Type has the specified interface in its heirarchy.</returns>
+            <param name="_interfaceType">
+            The Type of the Interface to look for
+            </param>
+            <returns>
+            TRUE if the Type has the specified interface in its heirarchy.
+            </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.IsInterfaceMatch(System.Type,System.Type)">
             <summary>
-            Determine if the two types represent matching interfaces. Interfaces match always
-            when they're the same <see cref="T:System.Type"/> . Also, interfaces also match if one is an
-            un-bound generic and the other is a specific generic.
+            Determine if the two types represent matching interfaces. Interfaces
+            match always when they're the same <see cref="T:System.Type"/> . Also,
+            interfaces also match if one is an un-bound generic and the other is
+            a specific generic.
             </summary>
             <param name="_interfaceToTest"></param>
             <param name="_interfaceType"></param>
@@ -6157,49 +6242,54 @@
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetAllFields(System.Type)">
             <summary>
-            This method will retrieve all fields in the Type's hierarchy, including private
-            fields found in a superclass that would otherwise be hidden when using the
-            GetFields() method (even with BindingFlags.FlattenHierarchy). This will return
-            public and non-public instance fields, but not any static fields.
+            This method will retrieve all fields in the Type's hierarchy,
+            including private fields found in a superclass that would otherwise
+            be hidden when using the GetFields() method (even with
+            BindingFlags.FlattenHierarchy). This will return public and
+            non-public instance fields, but not any static fields.
             </summary>
             <param name="_type">The Type to return all fields for</param>
             <returns>
-            An enumeration of all fields of a Type, including private fields on superclasses
+            An enumeration of all fields of a Type, including private fields on
+            superclasses
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetTypesInInheritanceChain(System.Type,System.Boolean,System.Boolean)">
             <summary>
-            Return an enumeration of the provided Type plus all types considered "BaseTypes"
-            (SuperClasses) of that Type. The returned values will be most-derived to
-            least-derived, with "this type" being the first returned value (if requested) and
-            typeof(object) being the last returned value (if requested)
+            Return an enumeration of the provided Type plus all types considered
+            "BaseTypes" (SuperClasses) of that Type. The returned values will be
+            most-derived to least-derived, with "this type" being the first
+            returned value (if requested) and typeof(object) being the last
+            returned value (if requested)
             </summary>
             <param name="_type">
             The Type that this function will return the inheritance chain for
             </param>
             <param name="_includeThisType">
-            If TRUE, then _type will be returned first. If FALSE, then _type.BaseType will be
-            return first
+            If TRUE, then _type will be returned first. If FALSE, then
+            _type.BaseType will be return first
             </param>
             <param name="_includeSystemObject">
-            If TRUE, then typeof(System.Object) will be returned as the last element. If FALSE,
-            then the Type derived directly from System.Object is returned last.
+            If TRUE, then typeof(System.Object) will be returned as the last
+            element. If FALSE, then the Type derived directly from System.Object
+            is returned last.
             </param>
             <returns>
-            An enumeration of Types in a Type's inheritance chain, in order of the most-derived
-            to the least-derived Types.
+            An enumeration of Types in a Type's inheritance chain, in order of
+            the most-derived to the least-derived Types.
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetMemberInfo(System.Linq.Expressions.Expression)">
             <summary>
-            Gets MemberInfo even if the referenced member is a primitive value nested inside a
-            UnaryExpression which is a Convert operation.
+            Gets MemberInfo even if the referenced member is a primitive value
+            nested inside a UnaryExpression which is a Convert operation.
             </summary>
             <param name="_body">
             The Expression Body which is evaluated as a Member expression
             </param>
             <returns>
-            A FieldInfo or PropertyInfo representing the member described in the expression.
+            A FieldInfo or PropertyInfo representing the member described in the
+            expression.
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetFieldInfo(System.Linq.Expressions.Expression)">
@@ -6218,63 +6308,79 @@
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetMemberInfo``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
-            Get a MemberInfo object for an expression. Allows the expression to be constructed
-            as a parameter to this method.
+            Get a MemberInfo object for an expression. Allows the expression to
+            be constructed as a parameter to this method.
             </summary>
             <typeparam name="T">
             The Type of the object declaring the interesting field or property
             </typeparam>
-            <param name="_expr">An expression identifying a member on type T</param>
+            <param name="_expr">
+            An expression identifying a member on type T
+            </param>
             <returns>A MemberInfo object for the identified member</returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetFieldInfo``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
-            Get a FieldInfo object for an expression. Allows the expression to be constructed as
-            a parameter to this method.
+            Get a FieldInfo object for an expression. Allows the expression to
+            be constructed as a parameter to this method.
             </summary>
             <typeparam name="T">
             The Type of the object declaring the interesting field
             </typeparam>
-            <param name="_expr">An expression identifying a field on type T</param>
+            <param name="_expr">
+            An expression identifying a field on type T
+            </param>
             <returns>A FieldInfo object for the identified field</returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetPropertyInfo``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
-            Get a PropertyInfo object for an expression. Allows the expression to be constructed
-            as a parameter to this method.
+            Get a PropertyInfo object for an expression. Allows the expression
+            to be constructed as a parameter to this method.
             </summary>
             <typeparam name="T">
             The Type of the object declaring the interesting property
             </typeparam>
-            <param name="_expr">An expression identifying a property on type T</param>
+            <param name="_expr">
+            An expression identifying a property on type T
+            </param>
             <returns>A PropertyInfo object for the identified property</returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetPropertyInfo(System.Reflection.MethodBase)">
             <summary>
-            Given what's assumed to be an individual getter or setter method for a property,
-            figure out what the actual <see cref="T:System.Reflection.PropertyInfo"/> object is for the property
-            that the accessor belongs to
+            Given what's assumed to be an individual getter or setter method for
+            a property, figure out what the actual <see cref="T:System.Reflection.PropertyInfo"/>
+            object is for the property that the accessor belongs to
             </summary>
-            <param name="_method">The actual get or set method to analyse</param>
+            <param name="_method">
+            The actual get or set method to analyse
+            </param>
             <returns>
-            NULL if the parameter is not a get or set method, or the <see cref="T:System.Reflection.PropertyInfo"/>
-            object if it is.
+            NULL if the parameter is not a get or set method, or the
+            <see cref="T:System.Reflection.PropertyInfo"/> object if it is.
             </returns>
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.SetMemberValue(System.Object,System.String,System.Object,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Set the value of a property or field on an object using the name of the member
+            Set the value of a property or field on an object using the name of
+            the member
             </summary>
-            <param name="_object">The object containing the member to set</param>
+            <param name="_object">
+            The object containing the member to set
+            </param>
             <param name="_memberName">The name of the member to set</param>
             <param name="_value">The value to assign to the member</param>
-            <param name="_includeFields">If TRUE, then fields will be searched</param>
-            <param name="_includeProperties">If TRUE, then properties will be searched</param>
+            <param name="_includeFields">
+            If TRUE, then fields will be searched
+            </param>
+            <param name="_includeProperties">
+            If TRUE, then properties will be searched
+            </param>
             <param name="_includePrivate">
             If TRUE, then access modifiers (public/private/etc) will be ignored.
             </param>
             <returns>
-            TRUE if the value was set, FALSE if there was no member with the specified name.
+            TRUE if the value was set, FALSE if there was no member with the
+            specified name.
             </returns>
         </member>
         <member name="T:Morpheus.ReflectionExtenstions.MemberNotFound">
@@ -6289,18 +6395,25 @@
         </member>
         <member name="M:Morpheus.ReflectionExtenstions.GetMemberValue(System.Object,System.String,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Get the value of a property or field on an object using the name of the member
+            Get the value of a property or field on an object using the name of
+            the member
             </summary>
-            <param name="_object">The object containing the member to get</param>
+            <param name="_object">
+            The object containing the member to get
+            </param>
             <param name="_memberName">The name of the member to get</param>
-            <param name="_includeFields">If TRUE, then fields will be searched</param>
-            <param name="_includeProperties">If TRUE, then properties will be searched</param>
+            <param name="_includeFields">
+            If TRUE, then fields will be searched
+            </param>
+            <param name="_includeProperties">
+            If TRUE, then properties will be searched
+            </param>
             <param name="_includePrivate">
             If TRUE, then access modifiers (public/private/etc) will be ignored.
             </param>
             <returns>
-            The value of the member specified, or <see cref="P:Morpheus.ReflectionExtenstions.MEMBER_NOT_FOUND"/> if there was no
-            member on the object
+            The value of the member specified, or <see cref="P:Morpheus.ReflectionExtenstions.MEMBER_NOT_FOUND"/>
+            if there was no member on the object
             </returns>
         </member>
         <member name="T:Morpheus.XmlExtensions">
